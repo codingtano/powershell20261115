@@ -1,10 +1,14 @@
-#Write-Output "Hello, World!"
+﻿#Write-Output "Hello, World!"
 
-cd C:\Users\target\Documents\document
+#cd C:\Users\target\Documents\document
+
+cd C:\Users\target\Desktop\clang
 
 #$files = Get-ChildItem -Recurse -name
 
-$files = Get-ChildItem -Filter "*.txt"
+$files = Get-ChildItem -Filter "*.c"
+
+$outputfile = "C:\Users\target\Desktop\result.txt"
 
 foreach( $targetfile in $files )
 {
@@ -14,7 +18,9 @@ foreach( $targetfile in $files )
 
     #Write-Host $filename
 
-    Select-String "hello" $filename >> result.txt
+    #Select-String "int" $filename >> $outputfile
+    #Select-String "int" $filename | ForEach-Object { $_.Line } >> $outputfile
+    Select-String "int" $filename | ForEach-Object {$_.ToString()} >> $outputfile
 
     #$lines = Get-Content "$targetfile" -Encoding UTF8
 
